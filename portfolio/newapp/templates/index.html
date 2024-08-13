@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{%block start%}
+    <div class="container">
+            <div class="row">
+                <div class="title mt-2 bg-primary text-center">
+                    <h1>Students Table</h1>
+                </div>
+            </div>
+        </div>
+        <div class="table">
+            <table class="table table-bordered m-4">
+                <thead>
+                <tr class="text-center">
+                        <th>Sn.</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Remarks</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    {%for people in person%}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{people.name}}</td>
+                        <td>{{people.age}}</td>
+                        <td>{{people.remarks}}</td>
+                        <td>{%if people.remarks == "Pass"%}
+                            <p class="bg-success">Congratulations</p>
+                            {%else%}
+                            <p class="bg-secondary">Better Luck Next Time</p>
+                        </td>
+                        {%endif%}
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+        </div>
+{%endblock%}

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block start%}
+<div class="container">
+    <div class="row">
+        <div class="receipe-form col-lg-3 m-1">
+            <form class="form-control shadow" method="post" enctype="multipart/form-data">
+                {% csrf_token%}
+                <div class="heading text-center .text-primary-emphasis  m-2  ">
+                    <h5>Add Receipe</h5>
+                </div>
+                <hr>
+                <div class="input-group mt-2 ">
+                    <input class="form-control" name = "receipe_name" type="text" placeholder="Receipe Name" aria-label="default input example" required>
+                  </div>
+                <div class="input-group mt-2 ">
+                    <textarea class="form-control" name = "receipe_description" placeholder="Receipe Description" id="floatingTextarea" required></textarea>
+                  </div>
+                <div class="input-group mt-2  ">
+                    <input class="form-control  border-secondary" name = "receipe_image" type="file" placeholder="Default input" aria-label="default input example">
+                  </div>
+                <div class="input-group d-flex justify-content-start m-3">
+                    <button type="submit" class="btn btn-primary">Add Receipe</button>
+                  </div>
+              </form>
+        </div>
+        <div class="receipe-form text-white col-lg-8 m-1 d-flex justify-content-start card shadow border-secondary ">
+            <div class="heading text-center text-white bg-primary m-2 border border-secondary ">
+                <h5>View Receipe</h5>
+            </div>
+            <form action="#">
+            <div class="input-group m-2 d-flex justify-content-start" style="width: 250px;">
+                <input name = "search" class="form-control  border-secondary" type="text" placeholder="Search...">
+                <button type="submit" class="btn btn-primary">Search</button>
+              </div>
+            </form>
+            <div class="table-bordered">
+                <table class="table table-striped shadow">
+                    <tr>
+                        <th>SN</th>
+                        <th>Name</th>
+                        <th>Directions</th>
+                        <th>Images</th>
+                        <th colspan="2">Action</th>
+                    </tr>
+                    {% for d in records %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{d.receipe_name}}</td>
+                        <td>{{d.receipe_description}}</td>
+                        <td>
+                            <img src="/media/{{d.receipe_image}}" style="width:120px; border-radius: 4px;">
+                        </td>
+                        <td><a href="/update-html/{{d.id}}"><button type="submit" name="update-btn" class="btn btn-success">Update</button></a></td>
+                        <td><a href="/delete-html/{{d.id}}"><button type="submit" name="delete-btn" class="btn btn-success">Delete</button></a></td>
+                    </tr>
+                    {% endfor %}
+                  </table>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

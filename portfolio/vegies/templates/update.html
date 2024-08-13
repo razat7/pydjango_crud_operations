@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block start%}
+<div class="container">
+    <div class="row">
+        <div class="receipe-form col-lg-10 m-4">
+            <form class="form-control shadow border-primary" method="post" enctype="multipart/form-data">
+                {% csrf_token%}
+                <div class="heading text-center .text-primary-emphasis  m-2  ">
+                    <h5 style="font-family:Georgia, 'Times New Roman', Times, serif; font-weight: 600;">Update Receipe</h5>
+                </div>
+                <hr>
+                <div class="input-group mt-2 ">
+                    <label for="label-group" class="form-group p-2 card border-primary text-black">Receipe Name:</label>
+                    <input class="form-control input-group  border-primary" name = "receipe_name" type="text" value="{{udata.receipe_name}}" required>
+                  </div>
+                <div class="input-group mt-2 ">
+                    <label for="label-group" class="form-group p-3 card border-primary text-black">Receipe Name:</label>
+                    <textarea class="form-control  border-primary" name = "receipe_description" id="floatingTextarea">{{udata.receipe_description}}</textarea>
+                  </div>
+                <div class="input-group mt-2  ">
+                    <input class="form-control  border-secondary" name = "receipe_image" type="file">
+                  </div>
+                <div class="input-group d-flex justify-content-start m-3">
+                    <button type="submit" class="btn btn-primary">Add Receipe</button>
+                  </div>
+              </form>
+        </div>
+    </div>
+</div>
+{%endblock%}
